@@ -1,4 +1,4 @@
-# 🚀 Containerized Data Science Pipeline using Terraform & Ansible
+# 🚀 Containerized Python Application using Terraform & Ansible
 
 This project demonstrates complete automation of deploying a Python Streamlit application on AWS using Terraform, Ansible, and Docker.
 
