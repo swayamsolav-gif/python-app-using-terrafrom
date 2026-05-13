@@ -1,16 +1,56 @@
-# 🚀 End-to-End DevOps Project – Student Data Analytics Application
+# 🚀 Containerized Data Science Pipeline using Terraform & Ansible
 
-A complete DevOps implementation of a Python-based Data Science application using Docker, Jenkins, Terraform, Ansible, AWS EC2, and Streamlit.
+This project demonstrates complete automation of deploying a Python Streamlit application on AWS using Terraform, Ansible, and Docker.
+
+Terraform provisions the AWS EC2 infrastructure, while Ansible installs Docker and deploys a containerized Python application that runs a live Streamlit dashboard.
 
 ---
 
 # 📌 Project Overview
 
-This project demonstrates a complete DevOps workflow for deploying a Python Data Science application on AWS infrastructure.
+This project automates the complete deployment workflow:
 
-The application analyzes student data and displays insights using an interactive Streamlit dashboard.
+1. Terraform launches AWS EC2 instance
+2. Ansible connects to the EC2 server
+3. Docker is installed automatically
+4. Python container is deployed
+5. Streamlit application becomes publicly accessible
 
-The project follows Infrastructure as Code (IaC), Configuration Management, Containerization, and CI/CD best practices.
+---
+
+# 🏗️ Architecture Diagram
+
+```text
+                    ┌────────────────────┐
+                    │     Terraform      │
+                    │────────────────────│
+                    │ Launch AWS EC2     │
+                    └─────────┬──────────┘
+                              │
+                              ▼
+                 ┌────────────────────────┐
+                 │        Ansible         │
+                 │────────────────────────│
+                 │ Install Docker         │
+                 │ Configure Server       │
+                 │ Deploy Python App      │
+                 └─────────┬──────────────┘
+                           │
+                           ▼
+                 ┌────────────────────────┐
+                 │         Docker         │
+                 │────────────────────────│
+                 │ Run Python Container   │
+                 └─────────┬──────────────┘
+                           │
+                           ▼
+                 ┌────────────────────────┐
+                 │   Streamlit Dashboard  │
+                 │────────────────────────│
+                 │ Runs on Port 8501      │
+                 │ Student Data Analysis  │
+                 └────────────────────────┘
+```
 
 ---
 
@@ -18,134 +58,50 @@ The project follows Infrastructure as Code (IaC), Configuration Management, Cont
 
 | Technology | Purpose |
 |------------|----------|
-| Python | Data Science Application |
-| Pandas | Data Analysis |
-| NumPy | Numerical Computation |
-| Streamlit | Dashboard UI |
-| Docker | Containerization |
-| Jenkins | CI/CD Automation |
-| Jenkins Blue Ocean | Pipeline Visualization |
 | Terraform | Infrastructure Provisioning |
-| Ansible | Configuration Management |
 | AWS EC2 | Cloud Hosting |
-| Git & GitHub | Version Control |
+| Ansible | Configuration Management |
+| Docker | Containerization |
+| Python | Data Science Application |
+| Streamlit | Dashboard UI |
+| Linux | Server Environment |
 
 ---
 
-# 🏗️ Project Architecture Flow
+# ☁️ Infrastructure Deployment
 
-```text
-                         ┌────────────────────┐
-                         │     Terraform      │
-                         │────────────────────│
-                         │ Provisions AWS EC2 │
-                         └─────────┬──────────┘
-                                   │
-                                   ▼
-                    ┌────────────────────────────┐
-                    │          Ansible           │
-                    │────────────────────────────│
-                    │ • Installs Docker          │
-                    │ • Installs Jenkins         │
-                    │ • Configures Jenkins Env   │
-                    └──────────┬─────────────────┘
-                               │
-                               ▼
-                  ┌──────────────────────────────┐
-                  │      Jenkins CI/CD Pipeline  │
-                  │──────────────────────────────│
-                  │ • Pulls code from GitHub     │
-                  │ • Builds Docker image        │
-                  │ • Runs container             │
-                  │ • Deploys application        │
-                  └───────────┬──────────────────┘
-                              │
-                              ▼
-                    ┌──────────────────────┐
-                    │        Docker        │
-                    │──────────────────────│
-                    │ Hosts containerised  │
-                    │ application          │
-                    └──────────┬───────────┘
-                               │
-                               ▼
-                 ┌────────────────────────────┐
-                 │    Streamlit Application   │
-                 │────────────────────────────│
-                 │ • Runs on Port 8501        │
-                 │ • Displays analysed        │
-                 │   student data dashboard   │
-                 └────────────────────────────┘
+## Configure Terraform Variables
+
+Update the `terraform.tfvars` file with your AWS credentials.
+
+```bash
+% cat terraform.tfvars
+
+AWS_ACCESS_KEY=""
+AWS_SECRET_KEY=""
+AWS_REGION="us-east-1"
 ```
 
 ---
 
-# 🚀 End-to-End Workflow
+# 🚀 Terraform Commands
 
-```text
-Developer Pushes Code to GitHub
-                │
-                ▼
-Terraform Creates AWS EC2 Infrastructure
-                │
-                ▼
-Ansible Configures Server Automatically
-                │
-                ├── Install Docker
-                ├── Install Jenkins
-                └── Configure Jenkins
-                │
-                ▼
-Jenkins Pipeline Starts
-                │
-                ├── Pull Source Code
-                ├── Build Docker Image
-                ├── Run Docker Container
-                └── Deploy Application
-                │
-                ▼
-Docker Hosts Streamlit Application
-                │
-                ▼
-Users Access Dashboard on:
-http://<EC2-PUBLIC-IP>:8501
+## Initialize Terraform
+
+```bash
+% terraform init
 ```
----
 
-# 🔥 Features
+## Launch Infrastructure
 
-- 📊 Student data analysis dashboard
-- 🐳 Dockerized Python application
-- ⚡ Automated Jenkins CI/CD pipeline
-- ☁️ Infrastructure provisioning using Terraform
-- 🔧 Automated server configuration using Ansible
-- 🚀 Continuous deployment on AWS EC2
-- 📈 Jenkins Blue Ocean visualization
-- 📦 Infrastructure as Code (IaC)
+```bash
+% terraform apply --auto-approve
+```
 
----
+## Destroy Infrastructure
 
-# CI/CD Benefits Achieved
-
-- Faster deployments
-- Infrastructure automation
-- Reduced manual configuration
-- Scalable deployment process
-- Consistent environments
-- Improved monitoring and visibility
+```bash
+% terraform destroy --auto-approve
+```
 
 ---
-
-# 🎯 Learning Outcomes
-
-This project demonstrates practical knowledge of:
-
-- DevOps lifecycle
-- CI/CD implementation
-- Infrastructure as Code
-- Containerization
-- Cloud deployment
-- Automation tools integration
-
----
-
