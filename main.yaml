@@ -1,0 +1,9 @@
+- name: Setup Jenkins
+  hosts: localhost
+  become: yes
+  roles:
+    # install and configure docker
+    - devops.projects.docker
+
+    # deploy python app using docker
+    - devops.projects.docker_streamlit_app
